@@ -1,0 +1,34 @@
+GET http://localhost:5191/locations
+
+###
+
+GET http://localhost:5191/workouts
+
+###
+
+GET http://localhost:5191/workouts/1
+
+###
+POST http://localhost:5191/workouts
+Content-Type: application/json
+
+{
+    "Name": "Legs",
+    "Duration": 120,
+    "Date": "2024-08-19T15:30:00",
+    "LocationId": 3
+}
+
+###
+PUT http://localhost:5191/workouts/1
+Content-Type: application/json
+
+{
+    "Name": "Arms",
+    "Duration": 100,
+    "Date": "2024-07-19T15:30:00",
+    "LocationId": "2"
+}
+
+###
+DELETE http://localhost:5191/workouts/4
