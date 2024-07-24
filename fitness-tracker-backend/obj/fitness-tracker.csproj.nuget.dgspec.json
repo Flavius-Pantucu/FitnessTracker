@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repositories\\fitness-tracker\\fitness-tracker.csproj": {}
+    "D:\\Repositories\\fitness-tracker\\fitness-tracker-backend\\fitness-tracker.csproj": {}
   },
   "projects": {
-    "D:\\Repositories\\fitness-tracker\\fitness-tracker.csproj": {
+    "D:\\Repositories\\fitness-tracker\\fitness-tracker-backend\\fitness-tracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositories\\fitness-tracker\\fitness-tracker.csproj",
+        "projectUniqueName": "D:\\Repositories\\fitness-tracker\\fitness-tracker-backend\\fitness-tracker.csproj",
         "projectName": "fitness-tracker",
-        "projectPath": "D:\\Repositories\\fitness-tracker\\fitness-tracker.csproj",
+        "projectPath": "D:\\Repositories\\fitness-tracker\\fitness-tracker-backend\\fitness-tracker.csproj",
         "packagesPath": "C:\\Users\\Flavius\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositories\\fitness-tracker\\obj\\",
+        "outputPath": "D:\\Repositories\\fitness-tracker\\fitness-tracker-backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Flavius\\AppData\\Roaming\\NuGet\\NuGet.Config"
