@@ -11,6 +11,6 @@ var app = builder.Build();
 app.MapWorkoutsEndpoints();
 app.MapLocationsEndpoints();
 
-app.MigrateDb();
+await app.MigrateDbAsync();
 
 app.Run();

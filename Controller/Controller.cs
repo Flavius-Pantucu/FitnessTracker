@@ -25,17 +25,17 @@ public static class Controller
         var group = app.MapGroup("workouts").WithParameterValidation();
 
         //GET ALL WORKOUTS
-        group.MapGet("/", (FitnessTrackerContext dbContext) =>
+        group.MapGet("/", async (FitnessTrackerContext dbContext) =>
         {
-            return dbContext.Workouts.Include(workout => workout.Location).ToList();
+            return await dbContext.Workouts.Include(workout => workout.Location).ToListAsync();
         });
 
         //GET SPECIFIC WORKOUT    
-        group.MapGet("/{id}", (int id, FitnessTrackerContext dbContext) =>
+        group.MapGet("/{id}", async (int id, FitnessTrackerContext dbContext) =>
         {
-            Workout? workout = dbContext.Workouts
+            Workout? workout = await dbContext.Workouts
                     .Include(workout => workout.Location)
-                    .FirstOrDefault(workout => workout.Id == id);
+                    .FirstOrDefaultAsync(workout => workout.Id == id);
 
             return workout is null ?
                  Results.NotFound() : Results.Ok(workout.ToDetailsDTO());
@@ -43,21 +43,21 @@ public static class Controller
         .WithName("GetWorkout");
 
         //ADD NEW WORKOUT
-        group.MapPost("/", (CreateWorkoutDTO newWorkout, FitnessTrackerContext dbContext) =>
+        group.MapPost("/", async (CreateWorkoutDTO newWorkout, FitnessTrackerContext dbContext) =>
         {
             Workout workout = newWorkout.ToEntity();
 
             dbContext.Workouts.Add(workout);
 
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return Results.CreatedAtRoute("GetWorkout", new { id = workout.Id }, workout.ToSummaryDTO());
         });
 
         //UPDATE WORKOUT
-        group.MapPut("/{id}", (int id, UpdateWorkoutDTO updateWorkout, FitnessTrackerContext dbContext) =>
+        group.MapPut("/{id}", async (int id, UpdateWorkoutDTO updateWorkout, FitnessTrackerContext dbContext) =>
         {
-            var workout = dbContext.Workouts.Find(id);
+            var workout = await dbContext.Workouts.FindAsync(id);
 
             if (workout is null)
             {
@@ -68,16 +68,16 @@ public static class Controller
                     CurrentValues.
                     SetValues(updateWorkout.ToEntity(id));
 
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return Results.NoContent();
         });
 
-        group.MapDelete("/{id}", (int id, FitnessTrackerContext dbContext) =>
+        group.MapDelete("/{id}", async (int id, FitnessTrackerContext dbContext) =>
         {
-            dbContext.Workouts
+            await dbContext.Workouts
                     .Where(workout => workout.Id == id)
-                    .ExecuteDelete();
+                    .ExecuteDeleteAsync();
 
             return Results.NoContent();
         });
